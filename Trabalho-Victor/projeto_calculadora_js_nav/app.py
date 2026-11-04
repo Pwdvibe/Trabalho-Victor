@@ -41,3 +41,33 @@ def subtracao():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+    # Página de multiplicação
+@app.route("/multiplicacao")
+def multiplicacao_page():
+    return render_template("multiplicacao.html")
+
+@app.route("/api/multiplicacao", methods=["POST"])
+def multiplicacao():
+    dados = request.get_json()
+    valor1 = float(dados["valor1"])
+    valor2 = float(dados["valor2"])
+    resultado = operacoes.calcular_multiplicacao(valor1, valor2)
+    return jsonify({"resultado": resultado})
+
+
+    # Página de divisão
+@app.route("/divisao")
+def divisao_page():
+    return render_template("divisão.html")
+
+@app.route("/api/divisao", methods=["POST"])
+def divisao():
+    dados = request.get_json()
+    valor1 = float(dados["valor1"])
+    valor2 = float(dados["valor2"])
+    resultado = operacoes.calcular_divisao(valor1, valor2)
+    return jsonify({"resultado": resultado})
+
+if __name__ == "__main__":
+    app.run(debug=True)
